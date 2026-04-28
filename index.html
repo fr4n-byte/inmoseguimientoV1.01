@@ -130,6 +130,52 @@
   .btn-resultado.postergada { background: var(--warn-light); color: var(--warn); border-color: #E8C88A; }
   .toggle-pasadas { text-align: center; padding: 14px 0 4px; }
   .toggle-pasadas button { background: none; border: none; font-size: 14px; color: var(--text2); font-family: var(--font); cursor: pointer; text-decoration: underline; font-weight: 500; }
+  /* Slider de seguimiento */
+  .seg-rapidos { display: flex; gap: 8px; margin-bottom: 10px; }
+  .seg-rapido { flex: 1; padding: 8px; border: 1px solid var(--border); border-radius: var(--radius-sm); font-size: 14px; font-weight: 500; font-family: var(--font); background: var(--bg); color: var(--text2); cursor: pointer; text-align: center; }
+  .seg-rapido.active { background: var(--accent); color: white; border-color: var(--accent); }
+  .seg-unidades { display: flex; gap: 6px; margin-bottom: 10px; }
+  .seg-unidad { flex: 1; padding: 7px; border: 1px solid var(--border); border-radius: var(--radius-sm); font-size: 13px; font-weight: 600; font-family: var(--font); background: var(--bg); color: var(--text3); cursor: pointer; text-align: center; }
+  .seg-unidad.active { background: var(--accent-light); color: var(--accent); border-color: var(--accent); }
+  .seg-slider-row { display: flex; align-items: center; gap: 12px; }
+  .seg-slider { flex: 1; accent-color: var(--accent); height: 4px; cursor: pointer; }
+  .seg-valor { font-size: 15px; font-weight: 600; color: var(--accent); min-width: 60px; text-align: right; }
+  /* Tabs de trato cerrado */
+  .card-tabs { display: flex; gap: 0; margin-top: 10px; border-radius: var(--radius-sm); overflow: hidden; border: 1px solid var(--border); }
+  .card-tab { flex: 1; padding: 9px 0; font-size: 13px; font-weight: 600; font-family: var(--font); cursor: pointer; border: none; text-align: center; transition: background 0.15s; }
+  .card-tab.docs { background: var(--accent); color: white; }
+  .card-tab.docs:active { opacity: 0.85; }
+  .card-tab.negocio { background: #1A3A5C; color: white; }
+  .card-tab.negocio:active { opacity: 0.85; }
+  .card-tab.negocio.concluido { background: #2196F3; }
+  .negocio-panel { overflow: hidden; }
+  .negocio-panel.hidden { display: none; }
+  /* Modal documentación */
+  .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 400; opacity: 0; pointer-events: none; transition: opacity 0.2s; }
+  .modal-overlay.visible { opacity: 1; pointer-events: all; }
+  .modal { position: fixed; bottom: 0; left: 0; right: 0; max-width: 480px; margin: 0 auto; background: var(--surface); border-radius: 20px 20px 0 0; z-index: 401; transform: translateY(100%); transition: transform 0.25s ease; max-height: 88vh; display: flex; flex-direction: column; }
+  .modal.visible { transform: translateY(0); }
+  .modal-header { padding: 16px 20px 12px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; flex-shrink: 0; }
+  .modal-title { font-size: 16px; font-weight: 600; letter-spacing: -0.01em; }
+  .modal-close { background: none; border: none; font-size: 22px; color: var(--text3); cursor: pointer; padding: 0 4px; }
+  .modal-body { overflow-y: auto; padding: 16px; flex: 1; }
+  .modal-tipo-selector { display: flex; gap: 6px; margin-bottom: 16px; }
+  .tipo-btn { flex: 1; padding: 8px 4px; border-radius: var(--radius-sm); font-size: 12px; font-weight: 600; font-family: var(--font); cursor: pointer; border: 1px solid var(--border); background: var(--bg); color: var(--text2); text-align: center; }
+  .tipo-btn.active { background: var(--accent); color: white; border-color: var(--accent); }
+  .checklist-seccion { font-size: 11px; font-weight: 600; color: var(--text3); text-transform: uppercase; letter-spacing: 0.07em; margin: 14px 0 8px; }
+  .checklist-item { display: flex; align-items: center; justify-content: space-between; padding: 10px 12px; border: 1px solid var(--border); border-radius: var(--radius-sm); margin-bottom: 6px; background: var(--bg); gap: 8px; }
+  .checklist-item.listo { background: var(--ok-light); border-color: #A8D5BC; }
+  .checklist-item.no-necesario { background: var(--surface2); opacity: 0.6; }
+  .checklist-texto { font-size: 14px; color: var(--text); flex: 1; line-height: 1.4; }
+  .checklist-texto.tachado { text-decoration: line-through; color: var(--text3); }
+  .checklist-btns { display: flex; gap: 4px; flex-shrink: 0; }
+  .check-btn { padding: 4px 8px; border-radius: 6px; font-size: 11px; font-weight: 600; font-family: var(--font); cursor: pointer; border: 1px solid var(--border); background: white; color: var(--text2); white-space: nowrap; }
+  .check-btn.ok { background: var(--ok-light); color: var(--ok); border-color: #A8D5BC; }
+  .check-btn.nn { background: var(--surface2); color: var(--text3); border-color: var(--border); }
+  .checklist-personalizado { margin-top: 14px; }
+  .add-doc-row { display: flex; gap: 8px; margin-top: 8px; }
+  .add-doc-input { flex: 1; padding: 9px 12px; border: 1px solid var(--border); border-radius: var(--radius-sm); font-size: 14px; font-family: var(--font); background: var(--bg); color: var(--text); outline: none; }
+  .add-doc-btn { padding: 9px 14px; background: var(--accent); color: white; border: none; border-radius: var(--radius-sm); font-size: 18px; cursor: pointer; }
   /* Menú hamburguesa y panel lateral */
   .hamburger { background: none; border: none; cursor: pointer; padding: 4px; display: flex; flex-direction: column; gap: 5px; justify-content: center; }
   .hamburger span { display: block; width: 22px; height: 2px; background: white; border-radius: 2px; transition: all 0.2s; }
@@ -184,6 +230,12 @@
     <div class="drawer-sub">Menú principal</div>
   </div>
   <div class="drawer-body">
+    <div class="drawer-section-label">Anexos</div>
+    <button class="drawer-btn" onclick="abrirRefDocs()">
+      <span class="drawer-btn-icon">📄</span>
+      <div><div>Documentación para trámites</div><div class="drawer-btn-sub">Requisitos por tipo de operación</div></div>
+    </button>
+    <hr style="border:none;border-top:1px solid var(--border);margin:14px 0;" />
     <div class="drawer-section-label">Mis datos</div>
     <button class="drawer-btn" onclick="exportarDatos()">
       <span class="drawer-btn-icon">📤</span>
@@ -206,9 +258,9 @@
   <div class="tabs-wrap">
     <button class="tab active" onclick="setFiltro('todos', this)">Todos</button>
     <button class="tab" onclick="setFiltro('urgente-manual', this)">⚡ Urgente</button>
-    <button class="tab" onclick="setFiltro('vencido', this)">Vencidos</button>
     <button class="tab" onclick="setFiltro('hoy', this)">Hoy</button>
     <button class="tab" onclick="setFiltro('ok', this)">En espera</button>
+    <button class="tab" onclick="setFiltro('para-cierre', this)">Para cierre</button>
     <button class="tab" onclick="setFiltro('cerrado', this)">✓ Cerrados</button>
     <button class="tab" onclick="setFiltro('archivado', this)">📦 Archivados</button>
   </div>
@@ -244,25 +296,41 @@
         </div>
       </div>
       <div class="form-group"><label class="form-label">Detalles de la propiedad</label><input class="form-input" id="f-prop-detalle" type="text" placeholder="Ej: 2 dorm, piso 3, vista calle" /></div>
-      <div class="form-group"><label class="form-label">¿Cómo quedó la conversación?</label>
+      <div class="form-group">
+        <label class="form-label">Zona</label>
+        <div class="autocomplete-wrap">
+          <input class="form-input" id="f-zona" type="text" placeholder="Ej: Miraflores, Achumani, Centro" autocomplete="off" oninput="mostrarSugerenciasZona('f', this.value)" onblur="setTimeout(()=>document.getElementById('autocomplete-zona-f').classList.add('hidden'),200)" />
+          <div class="autocomplete-list hidden" id="autocomplete-zona-f"></div>
+        </div>
+      </div>
+      <div class="form-group"><label class="form-label">¿Como quedo la conversacion?</label>
         <select class="form-select" id="f-estado">
           <option value="pensando">Lo va a pensar / consultar</option>
-          <option value="precio">Solo quería precio</option>
+          <option value="precio">Solo queria precio</option>
           <option value="visita">Quiere visitar</option>
+          <option value="reunion">Reunion programada</option>
+          <option value="para-cierre">Para cierre</option>
           <option value="frio">Sin respuesta</option>
           <option value="cerrado">✓ Trato cerrado</option>
         </select>
       </div>
       <div class="form-group"><label class="form-label">Notas</label><textarea class="form-textarea" id="f-nota" placeholder="Ej: busca 2 dorm, crédito, zona sur"></textarea></div>
-      <div class="form-group"><label class="form-label">Hacer seguimiento en</label>
-        <select class="form-select" id="f-dias">
-          <option value="0">Hoy mismo</option>
-          <option value="1">Mañana</option>
-          <option value="3">3 días</option>
-          <option value="5" selected>5 días</option>
-          <option value="7">7 días</option>
-          <option value="14">2 semanas</option>
-        </select>
+      <div class="form-group">
+        <label class="form-label">Hacer seguimiento en</label>
+        <div class="seg-rapidos">
+          <button type="button" class="seg-rapido" onclick="setSegRapido('f',0)">Hoy</button>
+          <button type="button" class="seg-rapido" onclick="setSegRapido('f',1)">Mañana</button>
+        </div>
+        <div class="seg-unidades">
+          <button type="button" class="seg-unidad active" id="f-seg-dia" onclick="setSegUnidad('f','dia')">Día</button>
+          <button type="button" class="seg-unidad" id="f-seg-semana" onclick="setSegUnidad('f','semana')">Semana</button>
+          <button type="button" class="seg-unidad" id="f-seg-mes" onclick="setSegUnidad('f','mes')">Mes</button>
+        </div>
+        <div class="seg-slider-row">
+          <input type="range" class="seg-slider" id="f-slider" min="1" max="30" value="5" oninput="updateSegLabel('f')" />
+          <span class="seg-valor" id="f-seg-label">5 días</span>
+        </div>
+        <input type="hidden" id="f-dias" value="5" />
       </div>
       <button class="btn-full" onclick="guardarCliente()">Guardar cliente</button>
     </div>
@@ -293,49 +361,65 @@
         </div>
       </div>
       <div class="form-group"><label class="form-label">Detalles de la propiedad</label><input class="form-input" id="d-prop-detalle" type="text" placeholder="Ej: 2 dorm, piso 3, vista calle" /></div>
+      <div class="form-group">
+        <label class="form-label">Zona</label>
+        <div class="autocomplete-wrap">
+          <input class="form-input" id="d-zona" type="text" placeholder="Ej: Miraflores, Achumani, Centro" autocomplete="off" oninput="mostrarSugerenciasZona('d', this.value)" onblur="setTimeout(()=>document.getElementById('autocomplete-zona-d').classList.add('hidden'),200)" />
+          <div class="autocomplete-list hidden" id="autocomplete-zona-d"></div>
+        </div>
+      </div>
       <!-- Caja de notas -->
       <div style="background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius-sm);padding:12px;margin-bottom:14px;">
         <div class="form-label" style="margin-bottom:8px;">Notas</div>
         <textarea class="form-textarea" id="d-nota-nueva" placeholder="Ej: Re agendar visita, interesado aún" style="background:white;"></textarea>
         <div style="display:flex;justify-content:flex-end;margin-top:8px;">
-          <button class="btn-full" onclick="agregarNota()" style="width:50%;background:var(--accent);padding:14px 4px;">Agregar nota</button>
+          <button class="btn-full" onclick="agregarNota()" id="btn-agregar-nota" style="width:50%;background:var(--accent);padding:14px 4px;">Agregar nota</button>
         </div>
         <div id="d-notas-historial" class="notas-historial"></div>
       </div>
       <hr class="divider" />
-      <div class="section-label">Reprogramar seguimiento</div>
-      <div class="form-group"><label class="form-label">Próximo contacto en</label>
-        <select class="form-select" id="d-dias">
-          <option value="0">Hoy mismo</option>
-          <option value="1">Mañana</option>
-          <option value="3">3 días</option>
-          <option value="5">5 días</option>
-          <option value="7">7 días</option>
-          <option value="14">2 semanas</option>
-        </select>
+      <div class="section-label" id="seccion-seguimiento">Reprogramar seguimiento</div>
+      <div class="form-group">
+        <div class="seg-rapidos">
+          <button type="button" class="seg-rapido" onclick="setSegRapido('d',0)">Hoy</button>
+          <button type="button" class="seg-rapido" onclick="setSegRapido('d',1)">Mañana</button>
+        </div>
+        <div class="seg-unidades">
+          <button type="button" class="seg-unidad active" id="d-seg-dia" onclick="setSegUnidad('d','dia')">Día</button>
+          <button type="button" class="seg-unidad" id="d-seg-semana" onclick="setSegUnidad('d','semana')">Semana</button>
+          <button type="button" class="seg-unidad" id="d-seg-mes" onclick="setSegUnidad('d','mes')">Mes</button>
+        </div>
+        <div class="seg-slider-row">
+          <input type="range" class="seg-slider" id="d-slider" min="1" max="30" value="5" oninput="updateSegLabel('d')" />
+          <span class="seg-valor" id="d-seg-label">5 días</span>
+        </div>
+        <input type="hidden" id="d-dias" value="5" />
       </div>
-      <div class="form-group"><label class="form-label">Estado de la conversación</label>
+      <div class="form-group"><label class="form-label">Estado de la conversacion</label>
         <select class="form-select" id="d-estado">
           <option value="pensando">Lo va a pensar / consultar</option>
-          <option value="precio">Solo quería precio</option>
+          <option value="precio">Solo queria precio</option>
           <option value="visita">Quiere visitar</option>
+          <option value="reunion">Reunion programada</option>
+          <option value="para-cierre">Para cierre</option>
           <option value="frio">Sin respuesta</option>
           <option value="cerrado">✓ Trato cerrado</option>
         </select>
       </div>
-      <button class="btn-full" onclick="guardarDetalle()">Guardar cambios</button>
+      <button class="btn-full" id="btn-guardar-cambios" onclick="guardarDetalle()">Guardar cambios</button>
       <hr class="divider" />
       <div class="section-label" id="seccion-cita">📅 Cita programada</div>
       <div class="form-group"><label class="form-label">Fecha de la cita</label><input class="form-input" id="d-cita-fecha" type="date" oninput="rehabilitarCita()" /></div>
       <div class="form-group"><label class="form-label">Hora</label><input class="form-input" id="d-cita-hora" type="time" oninput="rehabilitarCita()" /></div>
       <div class="form-group"><label class="form-label">Lugar / detalle</label><input class="form-input" id="d-cita-nota" type="text" placeholder="Ej: Visita depto Miraflores piso 3" oninput="rehabilitarCita()" /></div>
-      <div style="display:flex;gap:8px;margin-top:4px;">
+      <div id="cita-btns-row" style="display:flex;gap:8px;margin-top:4px;">
         <button class="btn-full" id="btn-guardar-cita" onclick="guardarCita()" style="background:#1A5A3A;flex:1;padding:14px 4px;">Guardar cita</button>
         <button class="btn-full" id="btn-gcal" onclick="abrirGoogleCalendar()" style="background:#1A73E8;flex:1;padding:14px 4px;opacity:0.4;pointer-events:none;">📅 A Google Calendar</button>
       </div>
       <hr class="divider" />
-      <button class="btn-full secundario" onclick="abrirHistorialCliente()">📋 Ver historial del cliente</button>
-      <button class="btn-full archivar" onclick="archivarCliente()">Archivar cliente</button>
+      <button class="btn-full secundario" id="btn-ver-historial" onclick="abrirHistorialCliente()">📋 Ver historial del cliente</button>
+      <button class="btn-full archivar" id="btn-archivar" onclick="toggleArchivar()">Archivar cliente</button>
+      <button class="btn-full" id="btn-eliminar" onclick="eliminarPermanente()" style="background:var(--danger);display:none;margin-top:6px;font-size:13px;padding:10px;">⚠️ Eliminar permanentemente</button>
     </div>
   </div>
 </div>
@@ -346,6 +430,44 @@
       <span class="form-title" id="historial-titulo">Historial</span>
     </div>
     <div id="historial-container"></div>
+  </div>
+</div>
+<div class="modal-overlay" id="modal-ref-overlay" onclick="cerrarRefDocs()"></div>
+<div class="modal" id="modal-ref-docs">
+  <div class="modal-header">
+    <div class="modal-title">📄 Documentación para trámites</div>
+    <button class="modal-close" onclick="cerrarRefDocs()">×</button>
+  </div>
+  <div class="modal-body">
+    <div class="modal-tipo-selector">
+      <button class="tipo-btn active" onclick="setTipoRef('compraventa',this)">Compraventa</button>
+      <button class="tipo-btn" onclick="setTipoRef('alquiler',this)">Alquiler</button>
+      <button class="tipo-btn" onclick="setTipoRef('anticretico',this)">Anticrético</button>
+    </div>
+    <div id="ref-docs-container"></div>
+  </div>
+</div>
+<div class="modal-overlay" id="modal-overlay" onclick="cerrarModal()"></div>
+<div class="modal" id="modal-docs">
+  <div class="modal-header">
+    <div class="modal-title" id="modal-titulo">📋 Documentación</div>
+    <button class="modal-close" onclick="cerrarModal()">×</button>
+  </div>
+  <div class="modal-body">
+    <div class="modal-tipo-selector">
+      <button class="tipo-btn active" onclick="setTipoDoc('compraventa',this)">Compraventa</button>
+      <button class="tipo-btn" onclick="setTipoDoc('alquiler',this)">Alquiler</button>
+      <button class="tipo-btn" onclick="setTipoDoc('anticretico',this)">Anticrético</button>
+    </div>
+    <div id="checklist-container"></div>
+    <div class="checklist-personalizado">
+      <div class="checklist-seccion">Documentación adicional</div>
+      <div id="docs-personalizados"></div>
+      <div class="add-doc-row">
+        <input class="add-doc-input" id="nuevo-doc-input" type="text" placeholder="Agregar documento..." />
+        <button class="add-doc-btn" onclick="agregarDocPersonalizado()">+</button>
+      </div>
+    </div>
   </div>
 </div>
 <div class="toast" id="toast"></div>
@@ -508,11 +630,11 @@ function renderCards() {
   let lista = [...clientes];
   if (filtroActual === 'archivado') lista = lista.filter(c => c.archivado);
   else if (filtroActual === 'cerrado') lista = lista.filter(c => c.estado === 'cerrado' && !c.archivado);
-  else if (filtroActual === 'urgente-manual') lista = lista.filter(c => !c.archivado && c.estado !== 'cerrado' && c.urgenteManual);
-  else if (filtroActual === 'vencido') lista = lista.filter(c => !c.archivado && c.estado !== 'cerrado' && !c.urgenteManual && diasRestantes(c) < 0);
-  else if (filtroActual === 'hoy') lista = lista.filter(c => !c.archivado && c.estado !== 'cerrado' && !c.urgenteManual && diasRestantes(c) === 0);
-  else if (filtroActual === 'ok') lista = lista.filter(c => !c.archivado && c.estado !== 'cerrado' && !c.urgenteManual && diasRestantes(c) > 0);
-  else lista = lista.filter(c => !c.archivado && c.estado !== 'cerrado');
+  else if (filtroActual === 'para-cierre') lista = lista.filter(c => !c.archivado && c.estado === 'para-cierre');
+  else if (filtroActual === 'urgente-manual') lista = lista.filter(c => !c.archivado && c.estado !== 'cerrado' && !c.negocioConcluido && c.urgenteManual);
+  else if (filtroActual === 'hoy') lista = lista.filter(c => !c.archivado && c.estado !== 'cerrado' && !c.negocioConcluido && !c.urgenteManual && diasRestantes(c) === 0);
+  else if (filtroActual === 'ok') lista = lista.filter(c => !c.archivado && c.estado !== 'cerrado' && !c.negocioConcluido && !c.urgenteManual && diasRestantes(c) > 0);
+  else lista = lista.filter(c => !c.archivado && c.estado !== 'cerrado' && !c.negocioConcluido);
   if (textoBusqueda) {
     const q = normalizar(textoBusqueda);
     lista = lista.filter(c => {
@@ -556,6 +678,16 @@ function renderCards() {
         </div>
       </div>
       <div class="card-actions" style="margin-top:10px;">${!esCerrado?`<button class="btn-sm ${botonContactado?'contactado':'primary'}" onclick="${botonContactado?'':'marcarContactado('+c.id+', this)'}">${botonContactado?'Contactado':'Contactar'}</button>`:''}<button class="btn-sm" onclick="abrirDetalle(${c.id})">${esCerrado?'Ver detalle':'Editar'}</button></div>
+      ${esCerrado && filtroActual === 'cerrado' ?`<div class="card-tabs">
+        <button class="card-tab docs" onclick="abrirDocs(${c.id})">📋 Documentación</button>
+        <button class="card-tab negocio ${c.negocioConcluido?'concluido':''}" onclick="toggleNegocio(${c.id})">✓ Negocio Concluido</button>
+      </div>
+      <div class="negocio-panel hidden" id="negocio-${c.id}">
+        <label style="display:flex;align-items:center;gap:10px;padding:12px 14px;background:#0F2A45;border-radius:0 0 var(--radius-sm) var(--radius-sm);cursor:pointer;">
+          <input type="checkbox" ${c.negocioConcluido?'checked':''} onchange="confirmarNegocio(${c.id},this.checked)" style="width:18px;height:18px;cursor:pointer;accent-color:#4A9EE0;" />
+          <span style="color:white;font-size:14px;font-weight:500;">Confirmar negocio concluido — el cliente dejará de aparecer en Seguimiento</span>
+        </label>
+      </div>`:''}
     </div>`;
   }).join('');
   document.getElementById('stat-urgente').textContent = clientes.filter(c => c.estado !== 'cerrado' && (c.urgenteManual || diasRestantes(c) < 0)).length;
@@ -583,6 +715,7 @@ function guardarCliente() {
     nombre: document.getElementById('f-nombre').value.trim(),
     prop: propInicial,
     propDetalle: propDetalleInicial,
+    zona: document.getElementById('f-zona').value.trim(),
     historial: propInicial ? [{ tipo: 'prop', fecha: new Date().toISOString(), texto: propInicial, detalle: propDetalleInicial }] : [],
     estado: document.getElementById('f-estado').value,
     notas: notaInicial ? [{ fecha: new Date().toISOString(), texto: notaInicial }] : [],
@@ -592,8 +725,10 @@ function guardarCliente() {
     fechaContacto: new Date().toISOString()
   };
   clientes.unshift(nuevo); guardar();
-  ['f-tel','f-nombre','f-prop','f-prop-detalle','f-nota'].forEach(id => document.getElementById(id).value = '');
-  document.getElementById('f-estado').value = 'pensando'; document.getElementById('f-dias').value = '5'; document.getElementById('f-urgente').checked = false;
+  ['f-tel','f-nombre','f-prop','f-prop-detalle','f-nota','f-zona'].forEach(id => document.getElementById(id).value = '');
+  document.getElementById('f-estado').value = 'pensando';
+  document.getElementById('f-urgente').checked = false;
+  initSlider('f', 5);
   showView('lista'); showToast('Cliente guardado ✓');
 }
 function fmtFechaCompleta(iso) {
@@ -629,35 +764,90 @@ function abrirDetalle(id) {
   const c = clientes.find(x => x.id === id); if (!c) return; detalleId = id;
   migrarNotas(c);
   if (!c.historial) c.historial = [];
+  const esCerrado = c.estado === 'cerrado' || c.archivado === true;
   document.getElementById('detalle-titulo').textContent = c.nombre || c.tel;
   document.getElementById('d-nombre').value = c.nombre || '';
   document.getElementById('d-tel').value = c.tel;
   document.getElementById('d-prop').value = c.prop || '';
   document.getElementById('d-prop-detalle').value = c.propDetalle || '';
+  document.getElementById('d-zona').value = c.zona || '';
   document.getElementById('d-estado').value = c.estado;
   document.getElementById('d-dias').value = c.diasSeg || 5;
+  initSlider('d', c.diasSeg || 5);
   document.getElementById('d-urgente').checked = c.urgenteManual || false;
   document.getElementById('d-cita-fecha').value = c.citaFecha || '';
   document.getElementById('d-cita-hora').value = c.citaHora || '';
   document.getElementById('d-cita-nota').value = c.citaNota || '';
   document.getElementById('d-nota-nueva').value = '';
   renderHistorial(c.notas);
+  // ── Modo solo lectura / editable según estado ──
+  const campos = ['d-nombre','d-tel','d-prop','d-prop-detalle','d-nota-nueva'];
+  campos.forEach(fid => {
+    const el = document.getElementById(fid);
+    if (!el) return;
+    el.disabled = esCerrado;
+    el.style.opacity = esCerrado ? '0.7' : '';
+    el.style.background = esCerrado ? 'var(--surface2)' : '';
+  });
+  const selects = ['d-dias','d-urgente'];
+  selects.forEach(fid => {
+    const el = document.getElementById(fid);
+    if (!el) return;
+    el.disabled = esCerrado;
+    el.style.opacity = esCerrado ? '0.7' : '';
+  });
+  // Selector de estado — siempre habilitado (para poder reactivar desde Cerrados)
+  const elEstado = document.getElementById('d-estado');
+  if (elEstado) { elEstado.disabled = false; elEstado.style.opacity = ''; }
+  // Sección de seguimiento — ocultar si cerrado
+  const secSeg = document.getElementById('seccion-seguimiento');
+  if (secSeg) secSeg.style.display = esCerrado ? 'none' : '';
+  // Sección de cita — ocultar si cerrado
+  const secCita = document.getElementById('seccion-cita');
+  if (secCita) secCita.style.display = esCerrado ? 'none' : '';
+  ['d-cita-fecha','d-cita-hora','d-cita-nota'].forEach(fid => {
+    const el = document.getElementById(fid);
+    if (el) el.closest('.form-group').style.display = esCerrado ? 'none' : '';
+  });
+  const citaBtns = document.getElementById('cita-btns-row');
+  if (citaBtns) citaBtns.style.display = esCerrado ? 'none' : 'flex';
+  // Botón guardar cambios — siempre visible en cerrado para poder reactivar
+  const btnGuardarCambios = document.getElementById('btn-guardar-cambios');
+  if (btnGuardarCambios) btnGuardarCambios.style.display = '';
+  // Botón agregar nota — ocultar si cerrado
+  const btnAgregarNota = document.getElementById('btn-agregar-nota');
+  if (btnAgregarNota) btnAgregarNota.style.display = esCerrado ? 'none' : '';
+  // Archivar y ver historial — SIEMPRE visibles y funcionales
+  const btnHistorial = document.getElementById('btn-ver-historial');
+  const btnArchivar = document.getElementById('btn-archivar');
+  if (btnHistorial) { btnHistorial.style.display = ''; btnHistorial.style.pointerEvents = 'auto'; btnHistorial.style.opacity = '1'; }
+  if (btnArchivar) {
+    btnArchivar.textContent = c.archivado ? 'Desarchivar cliente' : 'Archivar cliente';
+    btnArchivar.style.display = '';
+    btnArchivar.style.pointerEvents = 'auto';
+    btnArchivar.style.opacity = '1';
+  }
+  const btnEliminar = document.getElementById('btn-eliminar');
+  if (btnEliminar) btnEliminar.style.display = c.archivado ? '' : 'none';
+  // Botones de cita
   const btnGuardar = document.getElementById('btn-guardar-cita');
   const btnGcal = document.getElementById('btn-gcal');
-  if (c.citaFecha) {
-    btnGuardar.textContent = 'Cita guardada ✓';
-    btnGuardar.style.opacity = '0.5';
-    btnGuardar.style.pointerEvents = 'none';
-    btnGcal.style.opacity = '1';
-    btnGcal.style.pointerEvents = 'auto';
-    btnGcal.textContent = '📅 A Google Calendar';
-  } else {
-    btnGuardar.textContent = 'Guardar cita';
-    btnGuardar.style.opacity = '1';
-    btnGuardar.style.pointerEvents = 'auto';
-    btnGcal.style.opacity = '0.4';
-    btnGcal.style.pointerEvents = 'none';
-    btnGcal.textContent = '📅 A Google Calendar';
+  if (!esCerrado) {
+    if (c.citaFecha) {
+      btnGuardar.textContent = 'Cita guardada ✓';
+      btnGuardar.style.opacity = '0.5';
+      btnGuardar.style.pointerEvents = 'none';
+      btnGcal.style.opacity = '1';
+      btnGcal.style.pointerEvents = 'auto';
+      btnGcal.textContent = '📅 A Google Calendar';
+    } else {
+      btnGuardar.textContent = 'Guardar cita';
+      btnGuardar.style.opacity = '1';
+      btnGuardar.style.pointerEvents = 'auto';
+      btnGcal.style.opacity = '0.4';
+      btnGcal.style.pointerEvents = 'none';
+      btnGcal.textContent = '📅 A Google Calendar';
+    }
   }
   showView('detalle');
 }
@@ -678,6 +868,7 @@ function guardarDetalle() {
   c.tel = document.getElementById('d-tel').value.trim();
   c.prop = nuevaProp;
   c.propDetalle = nuevaPropDetalle;
+  c.zona = document.getElementById('d-zona').value.trim();
   // Propagar propDetalle a todos los clientes con la misma propiedad
   if (nuevaPropDetalle && nuevaProp) {
     clientes.forEach(x => { if (x.id !== c.id && x.prop === nuevaProp) x.propDetalle = nuevaPropDetalle; });
@@ -719,17 +910,55 @@ function guardarCita() {
   btnGcal.style.pointerEvents = 'auto';
   showToast('Cita guardada ✓');
 }
-function archivarCliente() {
-  if (!confirm('¿Archivar este cliente? Podrás verlo en la pestaña Archivados.')) return;
-  const c = clientes.find(x => x.id === detalleId); if (!c) return;
-  c.archivado = true;
-  c.fechaArchivo = new Date().toISOString();
+function eliminarPermanente() {
+  if (!confirm('¿Eliminar este cliente permanentemente? Esta acción no se puede deshacer.')) return;
+  if (!confirm('⚠️ Última confirmación — se borrarán todos sus datos, historial y notas.')) return;
+  clientes = clientes.filter(x => x.id !== detalleId);
   guardar();
-  filtroActual = 'todos';
-  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-  document.querySelectorAll('.tab')[0].classList.add('active');
+  filtroActual = 'archivado';
   showView('lista');
-  showToast('Cliente archivado ✓');
+  showToast('Cliente eliminado permanentemente');
+}
+function toggleArchivar() {
+  const c = clientes.find(x => x.id === detalleId); if (!c) return;
+  if (c.archivado) {
+    if (!confirm('¿Desarchivar este cliente? Volverá a la pestaña Todos en Seguimiento.')) return;
+    c.archivado = false;
+    c.fechaArchivo = null;
+    if (c.estado === 'cerrado') c.estado = 'pensando';
+    guardar();
+    filtroActual = 'todos';
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.tab')[0].classList.add('active');
+    showView('lista');
+    showToast('Cliente desarchivado ✓');
+  } else {
+    if (!confirm('¿Archivar este cliente? Podrás verlo en la pestaña Archivados.')) return;
+    c.archivado = true;
+    c.fechaArchivo = new Date().toISOString();
+    guardar();
+    filtroActual = 'todos';
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.tab')[0].classList.add('active');
+    showView('lista');
+    showToast('Cliente archivado ✓');
+  }
+}
+function getZonas() {
+  return [...new Set(clientes.filter(c => c.zona).map(c => c.zona))];
+}
+function mostrarSugerenciasZona(pre, valor) {
+  const lista = document.getElementById(`autocomplete-zona-${pre}`);
+  if (!valor || valor.length < 2) { lista.classList.add('hidden'); return; }
+  const q = normalizar(valor);
+  const zonas = getZonas().filter(z => normalizar(z).includes(q) && normalizar(z) !== normalizar(valor));
+  if (zonas.length === 0) { lista.classList.add('hidden'); return; }
+  lista.innerHTML = zonas.slice(0,5).map(z => `<div class="autocomplete-item" onmousedown="seleccionarZona('${pre}','${z.replace(/'/g,"\\'")}')">📍 ${z}</div>`).join('');
+  lista.classList.remove('hidden');
+}
+function seleccionarZona(pre, zona) {
+  document.getElementById(`${pre}-zona`).value = zona;
+  document.getElementById(`autocomplete-zona-${pre}`).classList.add('hidden');
 }
 function getPropiedades() {
   const mapa = {};
@@ -895,6 +1124,351 @@ function renderAgenda() {
   cont.innerHTML = html;
 }
 function eliminarCliente() { if (!confirm('¿Eliminar este cliente?')) return; clientes = clientes.filter(x => x.id !== detalleId); guardar(); showView('lista'); showToast('Cliente eliminado'); }
+// ── SLIDER DE SEGUIMIENTO ──
+const SEG_CONFIG = { dia: { max: 30, label: 'día', labelP: 'días' }, semana: { max: 10, label: 'semana', labelP: 'semanas' }, mes: { max: 5, label: 'mes', labelP: 'meses' } };
+const segUnidad = { f: 'dia', d: 'dia' };
+function setSegUnidad(pre, unidad) {
+  segUnidad[pre] = unidad;
+  const cfg = SEG_CONFIG[unidad];
+  const slider = document.getElementById(`${pre}-slider`);
+  slider.max = cfg.max;
+  if (parseInt(slider.value) > cfg.max) slider.value = cfg.max;
+  ['dia','semana','mes'].forEach(u => {
+    const btn = document.getElementById(`${pre}-seg-${u}`);
+    if (btn) btn.classList.toggle('active', u === unidad);
+  });
+  updateSegLabel(pre);
+}
+function updateSegLabel(pre) {
+  const slider = document.getElementById(`${pre}-slider`);
+  const val = parseInt(slider.value);
+  const unidad = segUnidad[pre];
+  const cfg = SEG_CONFIG[unidad];
+  const label = val === 1 ? cfg.label : cfg.labelP;
+  document.getElementById(`${pre}-seg-label`).textContent = `${val} ${label}`;
+  // Calcular días reales
+  let dias = val;
+  if (unidad === 'semana') dias = val * 7;
+  if (unidad === 'mes') dias = val * 30;
+  document.getElementById(`${pre}-dias`).value = dias;
+  // Quitar activo de rapidos
+  document.querySelectorAll(`#${pre === 'f' ? 'view-nuevo' : 'view-detalle'} .seg-rapido`).forEach(b => b.classList.remove('active'));
+}
+function setSegRapido(pre, dias) {
+  document.getElementById(`${pre}-dias`).value = dias;
+  segUnidad[pre] = 'dia';
+  const slider = document.getElementById(`${pre}-slider`);
+  slider.max = 30;
+  slider.value = dias;
+  ['dia','semana','mes'].forEach(u => {
+    const btn = document.getElementById(`${pre}-seg-${u}`);
+    if (btn) btn.classList.toggle('active', u === 'dia');
+  });
+  const label = dias === 0 ? 'Hoy' : 'Mañana';
+  document.getElementById(`${pre}-seg-label`).textContent = label;
+  document.querySelectorAll(`#${pre === 'f' ? 'view-nuevo' : 'view-detalle'} .seg-rapido`).forEach((b,i) => b.classList.toggle('active', i === dias));
+}
+function initSlider(pre, diasActual) {
+  diasActual = diasActual || 5;
+  let unidad = 'dia'; let val = diasActual;
+  if (diasActual % 30 === 0 && diasActual >= 30) { unidad = 'mes'; val = diasActual / 30; }
+  else if (diasActual % 7 === 0 && diasActual >= 7) { unidad = 'semana'; val = diasActual / 7; }
+  segUnidad[pre] = unidad;
+  const cfg = SEG_CONFIG[unidad];
+  const slider = document.getElementById(`${pre}-slider`);
+  slider.max = cfg.max;
+  slider.value = val;
+  ['dia','semana','mes'].forEach(u => {
+    const btn = document.getElementById(`${pre}-seg-${u}`);
+    if (btn) btn.classList.toggle('active', u === unidad);
+  });
+  const label = val === 1 ? cfg.label : cfg.labelP;
+  document.getElementById(`${pre}-seg-label`).textContent = `${val} ${label}`;
+  document.getElementById(`${pre}-dias`).value = diasActual;
+}
+const ABREVIATURAS = {
+  'IPBI': 'IMPUESTO A LA PROPIEDAD DE BIENES INMUEBLES',
+  'IMT': 'IMPUESTO MUNICIPAL A LAS TRANSFERENCIAS',
+  'IVA': 'IMPUESTO AL VALOR AGREGADO',
+  'C.I.': 'CÉDULA DE IDENTIDAD',
+  'N/A': 'NO APLICA',
+};
+const DOCS_REF = {
+  compraventa: {
+    'Vendedor': [
+      'Folio Real original (Derechos Reales)',
+      'Certificado Alodial actualizado (libre de gravámenes)',
+      'Escritura Pública / Testimonio de propiedad',
+      'C.I. del vendedor (original + fotocopia)',
+      'Comprobantes IPBI últimos años',
+      'Plano catastral / Certificado catastral',
+      'Consentimiento del cónyuge (si aplica)',
+      'Minuta de compraventa firmada por abogado',
+      'Comprobante pago IMT (3% del valor, 10 días hábiles)',
+    ],
+    'Comprador': [
+      'C.I. del comprador (original + fotocopia)',
+      'Testimonio de Escritura Pública protocolizada',
+      'Comprobante de inscripción en Derechos Reales',
+    ]
+  },
+  alquiler: {
+    'Propietario': [
+      'Folio Real (acredita titularidad)',
+      'C.I. del propietario',
+      'Contrato privado de alquiler con reconocimiento de firmas',
+      'Comprobante de pago IVA (13% del canon mensual)',
+    ],
+    'Inquilino': [
+      'C.I. del inquilino',
+      'Certificado de antecedentes penales',
+      'Garantía / depósito documentado',
+    ]
+  },
+  anticretico: {
+    'Propietario': [
+      'Folio Real original',
+      'Certificado Alodial (libre de gravámenes e hipotecas)',
+      'Escritura Pública del anticrético (obligatorio por ley)',
+      'C.I. del propietario',
+      'Inscripción en Derechos Reales (obligatorio por ley)',
+    ],
+    'Anticresista': [
+      'C.I. del anticresista',
+      'Comprobante de entrega del monto pactado',
+      'Copia de inscripción en Derechos Reales',
+    ]
+  }
+};
+function detectarAbreviaturas(texto) {
+  let abrevs = [];
+  Object.keys(ABREVIATURAS).forEach(abr => {
+    if (texto.includes(abr)) abrevs.push(abr);
+  });
+  return abrevs;
+}
+function renderRefDocs(tipo) {
+  const secciones = DOCS_REF[tipo];
+  let html = '';
+  Object.entries(secciones).forEach(([seccion, lista]) => {
+    html += `<div class="checklist-seccion">${seccion}</div>
+    <div style="background:var(--bg);border:1px solid var(--border);border-radius:var(--radius-sm);overflow:hidden;margin-bottom:14px;">`;
+    lista.forEach((doc, idx) => {
+      const borde = idx < lista.length - 1 ? 'border-bottom:1px solid var(--border);' : '';
+      const abrevs = detectarAbreviaturas(doc);
+      const abrevHtml = abrevs.length ? `<div style="margin-top:3px;">${abrevs.map(a=>`<span style="font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:0.05em;font-weight:600;">${a}: ${ABREVIATURAS[a]}</span>`).join(' &nbsp;')}</div>` : '';
+      html += `<div style="padding:10px 12px;${borde}">
+        <div style="font-size:14px;color:var(--text);line-height:1.4;">${doc}</div>
+        ${abrevHtml}
+      </div>`;
+    });
+    html += `</div>`;
+  });
+  document.getElementById('ref-docs-container').innerHTML = html;
+}
+let tipoRefActual = 'compraventa';
+function abrirRefDocs() {
+  toggleDrawer();
+  tipoRefActual = 'compraventa';
+  document.querySelectorAll('#modal-ref-docs .tipo-btn').forEach((b,i) => b.classList.toggle('active', i===0));
+  renderRefDocs(tipoRefActual);
+  document.getElementById('modal-ref-overlay').classList.add('visible');
+  document.getElementById('modal-ref-docs').classList.add('visible');
+}
+function cerrarRefDocs() {
+  document.getElementById('modal-ref-overlay').classList.remove('visible');
+  document.getElementById('modal-ref-docs').classList.remove('visible');
+}
+function setTipoRef(tipo, btn) {
+  tipoRefActual = tipo;
+  document.querySelectorAll('#modal-ref-docs .tipo-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderRefDocs(tipo);
+}
+const DOCS = {
+  compraventa: {
+    vendedor: [
+      'Folio Real original (Derechos Reales)',
+      'Certificado Alodial actualizado (libre de gravámenes)',
+      'Escritura Pública / Testimonio de propiedad',
+      'C.I. del vendedor (original + fotocopia)',
+      'Comprobantes IPBI últimos años',
+      'Plano catastral / Certificado catastral',
+      'Consentimiento del cónyuge (si aplica)',
+      'Minuta de compraventa firmada por abogado',
+      'Comprobante pago IMT (3% del valor, 10 días hábiles)',
+    ],
+    comprador: [
+      'C.I. del comprador (original + fotocopia)',
+      'Testimonio de Escritura Pública protocolizada',
+      'Comprobante de inscripción en Derechos Reales',
+    ]
+  },
+  alquiler: {
+    propietario: [
+      'Folio Real (acredita titularidad)',
+      'C.I. del propietario',
+      'Contrato privado de alquiler con reconocimiento de firmas',
+      'Comprobante de pago IVA (13% del canon mensual)',
+    ],
+    inquilino: [
+      'C.I. del inquilino',
+      'Certificado de antecedentes penales',
+      'Garantía / depósito documentado',
+    ]
+  },
+  anticretico: {
+    propietario: [
+      'Folio Real original',
+      'Certificado Alodial (libre de gravámenes e hipotecas)',
+      'Escritura Pública del anticrético (obligatorio por ley)',
+      'C.I. del propietario',
+      'Inscripción en Derechos Reales (obligatorio por ley)',
+    ],
+    anticresista: [
+      'C.I. del anticresista',
+      'Comprobante de entrega del monto pactado',
+      'Copia de inscripción en Derechos Reales',
+    ]
+  }
+};
+const LABELS = {
+  compraventa: { a: 'Vendedor', b: 'Comprador', ka: 'vendedor', kb: 'comprador' },
+  alquiler: { a: 'Propietario', b: 'Inquilino', ka: 'propietario', kb: 'inquilino' },
+  anticretico: { a: 'Propietario', b: 'Anticresista', ka: 'propietario', kb: 'anticresista' }
+};
+let docsClienteId = null;
+let docsClienteTipo = 'compraventa';
+function abrirDocs(id) {
+  docsClienteId = id;
+  const c = clientes.find(x => x.id === id); if (!c) return;
+  if (!c.docs) c.docs = {};
+  docsClienteTipo = c.docs.tipo || 'compraventa';
+  document.getElementById('modal-titulo').textContent = `📋 ${c.nombre || c.tel}`;
+  document.querySelectorAll('.tipo-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.tipo-btn').forEach(b => { if (b.textContent.toLowerCase().includes(docsClienteTipo === 'anticretico' ? 'anticr' : docsClienteTipo)) b.classList.add('active'); });
+  renderChecklist();
+  document.getElementById('modal-overlay').classList.add('visible');
+  document.getElementById('modal-docs').classList.add('visible');
+}
+function cerrarModal() {
+  document.getElementById('modal-overlay').classList.remove('visible');
+  document.getElementById('modal-docs').classList.remove('visible');
+}
+function setTipoDoc(tipo, btn) {
+  docsClienteTipo = tipo;
+  const c = clientes.find(x => x.id === docsClienteId); if (!c) return;
+  if (!c.docs) c.docs = {};
+  c.docs.tipo = tipo;
+  guardar();
+  document.querySelectorAll('.tipo-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderChecklist();
+}
+function getEstadoDoc(c, seccion, idx) {
+  return c.docs && c.docs[seccion] && c.docs[seccion][idx] ? c.docs[seccion][idx] : null;
+}
+function setEstadoDoc(id, seccion, idx, estado) {
+  const c = clientes.find(x => x.id === id); if (!c) return;
+  if (!c.docs) c.docs = {};
+  if (!c.docs[seccion]) c.docs[seccion] = {};
+  c.docs[seccion][idx] = c.docs[seccion][idx] === estado ? null : estado;
+  guardar();
+  renderChecklist();
+}
+function renderChecklist() {
+  const c = clientes.find(x => x.id === docsClienteId); if (!c) return;
+  const tipo = docsClienteTipo;
+  const lbl = LABELS[tipo];
+  const docs = DOCS[tipo];
+  const secA = Object.keys(docs)[0];
+  const secB = Object.keys(docs)[1];
+  let html = '';
+  [[lbl.a, secA, docs[secA]], [lbl.b, secB, docs[secB]]].forEach(([label, seccion, lista]) => {
+    html += `<div class="checklist-seccion">${label}</div>
+    <div style="background:var(--bg);border:1px solid var(--border);border-radius:var(--radius-sm);overflow:hidden;margin-bottom:14px;">`;
+    lista.forEach((doc, idx) => {
+      const est = getEstadoDoc(c, seccion, idx);
+      const claseItem = est === 'listo' ? 'listo' : est === 'nn' ? 'no-necesario' : '';
+      const claseTexto = est === 'nn' ? 'tachado' : '';
+      const borde = idx < lista.length - 1 ? 'border-bottom:1px solid var(--border);' : '';
+      html += `<div class="checklist-item ${claseItem}" style="border:none;border-radius:0;${borde}">
+        <span class="checklist-texto ${claseTexto}">${doc}</span>
+        <div class="checklist-btns">
+          <button class="check-btn ${est==='listo'?'ok':''}" onclick="setEstadoDoc(${c.id},'${seccion}',${idx},'listo')">✓ Listo</button>
+          <button class="check-btn ${est==='nn'?'nn':''}" onclick="setEstadoDoc(${c.id},'${seccion}',${idx},'nn')">— N/A</button>
+        </div>
+      </div>`;
+    });
+    html += `</div>`;
+  });
+  document.getElementById('checklist-container').innerHTML = html;
+  renderDocsPersonalizados(c);
+}
+function renderDocsPersonalizados(c) {
+  const lista = (c.docs && c.docs.personalizados) || [];
+  const cont = document.getElementById('docs-personalizados');
+  cont.innerHTML = lista.map((d, idx) => `
+    <div class="checklist-item ${d.estado==='listo'?'listo':d.estado==='nn'?'no-necesario':''}">
+      <span class="checklist-texto ${d.estado==='nn'?'tachado':''}">${d.texto}</span>
+      <div class="checklist-btns">
+        <button class="check-btn ${d.estado==='listo'?'ok':''}" onclick="setEstadoDocPersonalizado(${idx},'listo')">✓ Listo</button>
+        <button class="check-btn ${d.estado==='nn'?'nn':''}" onclick="setEstadoDocPersonalizado(${idx},'nn')">— N/A</button>
+        <button class="check-btn" onclick="eliminarDocPersonalizado(${idx})" style="color:var(--danger);">✕</button>
+      </div>
+    </div>`).join('');
+}
+function agregarDocPersonalizado() {
+  const input = document.getElementById('nuevo-doc-input');
+  const texto = input.value.trim(); if (!texto) return;
+  const c = clientes.find(x => x.id === docsClienteId); if (!c) return;
+  if (!c.docs) c.docs = {};
+  if (!c.docs.personalizados) c.docs.personalizados = [];
+  c.docs.personalizados.push({ texto, estado: null });
+  input.value = '';
+  guardar();
+  renderDocsPersonalizados(c);
+}
+function setEstadoDocPersonalizado(idx, estado) {
+  const c = clientes.find(x => x.id === docsClienteId); if (!c) return;
+  c.docs.personalizados[idx].estado = c.docs.personalizados[idx].estado === estado ? null : estado;
+  guardar();
+  renderDocsPersonalizados(c);
+}
+function eliminarDocPersonalizado(idx) {
+  const c = clientes.find(x => x.id === docsClienteId); if (!c) return;
+  c.docs.personalizados.splice(idx, 1);
+  guardar();
+  renderDocsPersonalizados(c);
+}
+let negocioTaps = {};
+function toggleNegocio(id) {
+  const c = clientes.find(x => x.id === id); if (!c) return;
+  const panel = document.getElementById(`negocio-${id}`);
+  if (!panel) return;
+  if (c.negocioConcluido) {
+    // Requiere doble tap
+    if (!negocioTaps[id]) {
+      negocioTaps[id] = true;
+      showToast('Toca de nuevo para abrir');
+      setTimeout(() => { negocioTaps[id] = false; }, 2000);
+      return;
+    }
+    negocioTaps[id] = false;
+  }
+  panel.classList.toggle('hidden');
+}
+function confirmarNegocio(id, checked) {
+  const c = clientes.find(x => x.id === id); if (!c) return;
+  c.negocioConcluido = checked;
+  if (!checked) {
+    // Al desmarcar, volver el cliente a seguimiento activo
+    c.estado = 'pensando';
+  }
+  guardar();
+  renderCards();
+  showToast(checked ? 'Negocio concluido ✓' : 'Negocio reabierto — cliente en seguimiento');
+}
 function showView(v) {
   cerrarBusqueda();
   document.getElementById('view-lista').classList.toggle('hidden', v !== 'lista');
