@@ -1,5 +1,12 @@
-const CACHE = 'inmo-V1.01';
-const ARCHIVOS = ['/'];
+const CACHE = 'inmo-v101'; // 🔥 cambio de versión
+
+const ARCHIVOS = [
+  '/inmoseguimientoV1.01/',
+  '/inmoseguimientoV1.01/index.html',
+  '/inmoseguimientoV1.01/manifest.json',
+  '/inmoseguimientoV1.01/icon-192.png',
+  '/inmoseguimientoV1.01/icon-512.png'
+];
 
 self.addEventListener('install', e => {
   e.waitUntil(
@@ -11,7 +18,9 @@ self.addEventListener('install', e => {
 self.addEventListener('activate', e => {
   e.waitUntil(
     caches.keys().then(keys =>
-      Promise.all(keys.filter(k => k !== CACHE).map(k => caches.delete(k)))
+      Promise.all(
+        keys.filter(k => k !== CACHE).map(k => caches.delete(k))
+      )
     )
   );
   self.clients.claim();
