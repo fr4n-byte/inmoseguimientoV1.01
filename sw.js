@@ -1,4 +1,4 @@
-const CACHE = 'inmo-v1';
+const CACHE = 'inmo-v101';
 const ARCHIVOS = ['/'];
 
 self.addEventListener('install', e => {
