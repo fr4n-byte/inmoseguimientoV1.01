@@ -1,4 +1,4 @@
-const CACHE = 'inmo-v101'; // 🔥 cambio de versión
+const CACHE = 'inmo-v2'; // CAMBIADO: único para V1.01
 
 const ARCHIVOS = [
   '/inmoseguimientoV1.01/',
