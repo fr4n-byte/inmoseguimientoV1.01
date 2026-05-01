@@ -1497,7 +1497,7 @@ document.getElementById('search-input').addEventListener('input', function(e) {
   renderCards();
 });
 if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/inmoseguimiento/sw.js').catch(() => {});
+ navigator.serviceWorker.register('./sw.js').catch(() => {});
 }
 </script>
 </body>
