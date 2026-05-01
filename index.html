@@ -1497,6 +1497,14 @@ document.getElementById('search-input').addEventListener('input', function(e) {
   renderCards();
 });
 if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.getRegistrations().then(regs => {
+    for (let reg of regs) {
+      reg.unregister();
+      console.log('SW eliminado:', reg.scope);
+    }
+  });
+}
+ if ('serviceWorker' in navigator) {
  navigator.serviceWorker.register('./sw.js').catch(() => {});
 }
 </script>
