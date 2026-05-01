@@ -1,6 +1,6 @@
 {
-  "name": "CRM Inmo V101 NUEVO",
-  "short_name": "Inmo101",
+  "name": "InmoSeguimiento V2",
+  "short_name": "InmoV2",
   "description": "CRM de seguimiento para agentes inmobiliarios",
   "start_url": "/inmoseguimientoV1.01/",
   "scope": "/inmoseguimientoV1.01/",
