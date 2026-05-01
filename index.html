@@ -493,7 +493,7 @@
 </div>
 <script>
 if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('./sw.js').catch(() => {});
+  navigator.serviceWorker.register('./sw.js', { scope: './' }).catch(() => {});
 }
 function getHoy() { const h = new Date(); h.setHours(0,0,0,0); return h; }
 let _fechaHoy = getHoy().toDateString();
