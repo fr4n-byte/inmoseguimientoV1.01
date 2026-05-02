@@ -106,7 +106,9 @@
   .urgente-check-row input[type=checkbox] { width: 18px; height: 18px; accent-color: #8B1FA8; cursor: pointer; }
   .urgente-check-label { font-size: 15px; font-weight: 500; color: #6B1580; cursor: pointer; }
   .urgente-check-sub { font-size: 12px; color: var(--text3); margin-top: 1px; }
-  .toast { position: fixed; bottom: 90px; left: 50%; transform: translateX(-50%) translateY(20px); background: var(--text); color: white; padding: 10px 20px; border-radius: 20px; font-size: 13px; font-weight: 500; opacity: 0; transition: all 0.25s; pointer-events: none; white-space: nowrap; z-index: 200; }
+  .toast { position: fixed; bottom: 90px; left: 50%; transform: translateX(-50%) translateY(20px); background: var(--text); color: white; padding: 10px 20px; border-radius: 20px; font-size: 13px; font-weight: 500; opacity: 0; transition: all 0.25s; pointer-events: none; white-space: nowrap; z-index: 200; display: flex; align-items: center; gap: 10px; }
+  .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); pointer-events: all; }
+  .toast-deshacer { background: none; border: 1px solid rgba(255,255,255,0.4); color: white; font-size: 12px; font-weight: 600; font-family: var(--font); padding: 3px 10px; border-radius: 12px; cursor: pointer; white-space: nowrap; }
   .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
   .bottom-nav { position: fixed; bottom: 0; left: 0; right: 0; max-width: 480px; margin: 0 auto; background: var(--surface); border-top: 1px solid var(--border); display: flex; padding: 8px 0 12px; }
   .nav-item { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 3px; background: none; border: none; cursor: pointer; font-family: var(--font); color: var(--text3); font-size: 10px; font-weight: 500; padding: 4px 0; }
@@ -501,16 +503,40 @@ setInterval(() => {
   const hoyActual = getHoy().toDateString();
   if (hoyActual !== _fechaHoy) { _fechaHoy = hoyActual; renderCards(); }
 }, 60000);
-let clientes = JSON.parse(localStorage.getItem('inmo_clientes') || 'null') || [
-  { id:1, tel:'70012345', nombre:'Juan Mamani', prop:'Depto 2 dorm. Miraflores', estado:'pensando', nota:'Crédito, busca zona norte, presupuesto 80k', diasSeg:5, fechaCreacion: new Date(getHoy() - 6*86400000).toISOString(), fechaContacto: new Date(getHoy() - 6*86400000).toISOString() },
-  { id:2, tel:'71234567', nombre:'María López', prop:'Casa 3 dorm. Achumani', estado:'pensando', nota:'Al contado, quiere jardín', diasSeg:3, fechaCreacion: new Date(getHoy() - 5*86400000).toISOString(), fechaContacto: new Date(getHoy() - 5*86400000).toISOString() },
-  { id:3, tel:'79876543', nombre:'', prop:'Depto 1 dorm. Centro', estado:'precio', nota:'Solo quería precio', diasSeg:7, fechaCreacion: new Date(getHoy() - 2*86400000).toISOString(), fechaContacto: new Date(getHoy() - 2*86400000).toISOString() },
+let clientes;
+try {
+  const raw = localStorage.getItem('inmo_clientes');
+  clientes = raw ? JSON.parse(raw) : null;
+} catch(e) {
+  try {
+    const backup = localStorage.getItem('inmo_clientes_backup');
+    clientes = backup ? JSON.parse(backup) : null;
+    if (clientes) showToast('Datos recuperados del backup automatico');
+  } catch(e2) { clientes = null; }
+}
+if (!clientes) clientes = [
+  { id: 1, tel: '70000000', nombre: 'Juan Pérez (ejemplo)', prop: 'Departamento 2 dormitorios', propDetalle: '2 dormitorios, piso 3', zona: 'Miraflores', estado: 'pensando', notas: [{ fecha: new Date().toISOString(), texto: 'Cliente de ejemplo — puedes eliminarlo cuando quieras.' }], historial: [], diasSeg: 5, fechaCreacion: new Date().toISOString(), fechaContacto: new Date().toISOString() },
 ];
 let detalleId = null;
 let filtroActual = 'todos';
 let ordenAsc = localStorage.getItem('inmo_orden') === 'asc';
 let textoBusqueda = '';
-function guardar() { localStorage.setItem('inmo_clientes', JSON.stringify(clientes)); }
+function guardar() {
+  try {
+    const datos = JSON.stringify(clientes);
+    localStorage.setItem('inmo_clientes', datos);
+    localStorage.setItem('inmo_clientes_backup', datos);
+    localStorage.setItem('inmo_last_save', Date.now().toString());
+    return true;
+  } catch(e) {
+    try {
+      const esenciales = clientes.slice(-50);
+      localStorage.setItem('inmo_clientes_emergencia', JSON.stringify(esenciales));
+    } catch(e2) {}
+    showToast('⚠️ Error al guardar. Libera espacio en el dispositivo.');
+    return false;
+  }
+}
 function migrarNotas(c) {
   if (!c.notas) {
     c.notas = c.nota ? [{ fecha: c.fechaContacto || c.fechaCreacion, texto: c.nota }] : [];
@@ -695,13 +721,30 @@ function renderCards() {
   document.getElementById('stat-total').textContent = clientes.filter(c => c.estado !== 'cerrado').length;
 }
 function setFiltro(f, btn) { filtroActual = f; document.querySelectorAll('.tab').forEach(t => t.classList.remove('active')); btn.classList.add('active'); renderCards(); }
+let ultimoContactado = null;
 function marcarContactado(id, btn) {
   btn.classList.remove('primary');
   btn.classList.add('confirmando');
   btn.textContent = '¡Listo! ✓';
   setTimeout(() => {
     const c = clientes.find(x => x.id === id);
-    if (c) { c.fechaContacto = new Date().toISOString(); c.contactado = true; guardar(); renderCards(); showToast('Seguimiento actualizado ✓'); }
+    if (c) {
+      ultimoContactado = { id, fechaAnterior: c.fechaContacto, contactadoAnterior: c.contactado };
+      c.fechaContacto = new Date().toISOString();
+      c.contactado = true;
+      guardar();
+      renderCards();
+      showToastDeshacer('Seguimiento actualizado ✓', () => {
+        const cx = clientes.find(x => x.id === ultimoContactado.id);
+        if (cx) {
+          cx.fechaContacto = ultimoContactado.fechaAnterior;
+          cx.contactado = ultimoContactado.contactadoAnterior;
+          guardar();
+          renderCards();
+          showToast('Accion deshecha');
+        }
+      });
+    }
   }, 1200);
 }
 function guardarCliente() {
@@ -750,7 +793,7 @@ function renderHistorial(notas) {
 }
 function agregarNota() {
   const texto = document.getElementById('d-nota-nueva').value.trim();
-  if (!texto) { showToast('Escribí algo antes de agregar'); return; }
+  if (!texto) { showToast('Escribe algo antes de agregar'); return; }
   const c = clientes.find(x => x.id === detalleId); if (!c) return;
   migrarNotas(c);
   c.notas.unshift({ fecha: new Date().toISOString(), texto });
@@ -1036,7 +1079,7 @@ function abrirGoogleCalendar() {
   const fecha = document.getElementById('d-cita-fecha').value;
   const hora = document.getElementById('d-cita-hora').value;
   const lugar = document.getElementById('d-cita-nota').value.trim();
-  if (!fecha) { showToast('Primero guardá la fecha de la cita'); return; }
+  if (!fecha) { showToast('Primero guarda la fecha de la cita'); return; }
   const nombre = c.nombre || c.tel;
   const titulo = encodeURIComponent(`Visita: ${nombre} — ${c.prop || 'Sin propiedad'}`);
   const detalle = encodeURIComponent(`Cliente: ${nombre}\nTeléfono: ${c.tel}\nPropiedad: ${c.prop||''}\n${lugar}`);
@@ -1483,7 +1526,26 @@ function showView(v) {
   if (v === 'agenda') renderAgenda();
   window.scrollTo(0, 0);
 }
-function showToast(msg) { const t = document.getElementById('toast'); t.textContent = msg; t.classList.add('show'); setTimeout(() => t.classList.remove('show'), 2200); }
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.innerHTML = `<span>${msg}</span>`;
+  t.classList.add('show');
+  clearTimeout(t._timeout);
+  t._timeout = setTimeout(() => t.classList.remove('show'), 2200);
+}
+function showToastDeshacer(msg, onDeshacer) {
+  const t = document.getElementById('toast');
+  t.innerHTML = `<span>${msg}</span><button class="toast-deshacer" onclick="deshacerContactado()">Deshacer</button>`;
+  t._onDeshacer = onDeshacer;
+  t.classList.add('show');
+  clearTimeout(t._timeout);
+  t._timeout = setTimeout(() => { t.classList.remove('show'); t._onDeshacer = null; }, 4000);
+}
+function deshacerContactado() {
+  const t = document.getElementById('toast');
+  t.classList.remove('show');
+  if (t._onDeshacer) { t._onDeshacer(); t._onDeshacer = null; }
+}
 const dias = ['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'];
 const meses = ['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'];
 const hoyFecha = new Date();
