@@ -3,6 +3,8 @@ const CACHE = 'inmo-v2'; // CAMBIADO: único para V1.01
 const ARCHIVOS = [
   './',
   './index.html',
+  './app.css',
+  './app.js',
   './manifest.json',
   './icon-192.png',
   './icon-512.png'
