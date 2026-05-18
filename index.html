@@ -8,7 +8,7 @@
 <meta name="apple-mobile-web-app-title" content="InmoSeguimiento" />
 <meta name="mobile-web-app-capable" content="yes" />
 <meta name="theme-color" content="#2B4D3F" />
-<link rel="manifest" href="/inmoseguimientoV1.01/manifest.json" />
+<link rel="manifest" href="./manifest.json" />
 <title>InmoSeguimiento</title>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
 <style>
@@ -494,9 +494,6 @@
   <button class="nav-item" id="nav-buscar" onclick="toggleBusqueda()"><span class="nav-icon">🔍</span><span>Buscar</span></button>
 </div>
 <script>
-if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('./sw.js', { scope: './' }).catch(() => {});
-}
 function getHoy() { const h = new Date(); h.setHours(0,0,0,0); return h; }
 let _fechaHoy = getHoy().toDateString();
 setInterval(() => {
@@ -1559,15 +1556,7 @@ document.getElementById('search-input').addEventListener('input', function(e) {
   renderCards();
 });
 if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.getRegistrations().then(regs => {
-    for (let reg of regs) {
-      reg.unregister();
-      console.log('SW eliminado:', reg.scope);
-    }
-  });
-}
- if ('serviceWorker' in navigator) {
- navigator.serviceWorker.register('./sw.js').catch(() => {});
+  navigator.serviceWorker.register('./sw.js').catch(() => {});
 }
 </script>
 </body>

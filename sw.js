@@ -1,11 +1,11 @@
 const CACHE = 'inmo-v2'; // CAMBIADO: único para V1.01
 
 const ARCHIVOS = [
-  '/inmoseguimientoV1.01/',
-  '/inmoseguimientoV1.01/index.html',
-  '/inmoseguimientoV1.01/manifest.json',
-  '/inmoseguimientoV1.01/icon-192.png',
-  '/inmoseguimientoV1.01/icon-512.png'
+  './',
+  './index.html',
+  './manifest.json',
+  './icon-192.png',
+  './icon-512.png'
 ];
 
 self.addEventListener('install', e => {
